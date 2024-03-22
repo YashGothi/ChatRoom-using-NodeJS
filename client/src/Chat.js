@@ -12,7 +12,9 @@ function Chat({ socket, username, room }) {
         author: username,
         message: currentMessage,
         time:
-          new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
       };
 
       await socket.emit("send_message", messageData);
@@ -25,9 +27,9 @@ function Chat({ socket, username, room }) {
     const receiveMessage = (data) => {
       setMessageList((list) => [...list, data]);
     };
-  
+
     socket.on("receive_message", receiveMessage);
-  
+
     // Clean up the event listener
     return () => {
       socket.off("receive_message", receiveMessage);
@@ -36,9 +38,9 @@ function Chat({ socket, username, room }) {
 
   return (
     <div className="cwindow">
-        <div className="cheader">
-            <p>Online Chat Room</p>
-        </div>
+      <div className="cheader">
+        <p>Online Chat Room</p>
+      </div>
 
       <div className="cbody">
         <ScrollToBottom className="message-container">
@@ -65,7 +67,9 @@ function Chat({ socket, username, room }) {
       </div>
       <div className="cfooter">
         <input
-          type="text" value={currentMessage} placeholder="enter text..."
+          type="text"
+          value={currentMessage}
+          placeholder="enter text..."
           onChange={(event) => {
             setCurrentMessage(event.target.value);
           }}
