@@ -27,7 +27,7 @@ function Chat({ socket, username, room }) {
     const receiveMessage = (data) => {
       setMessageList((list) => [...list, data]);
     };
-
+    // Receiving Message
     socket.on("receive_message", receiveMessage);
 
     // Clean up the event listener
